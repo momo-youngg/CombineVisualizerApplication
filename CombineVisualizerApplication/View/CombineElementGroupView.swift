@@ -29,41 +29,43 @@ extension CombineElementGroupView {
             .font(.largeTitle)
     }
     
+    func subtitle(_ subtitle: String, color: Color) -> some View {
+        HStack {
+            Text(subtitle)
+                .font(.title)
+                .foregroundColor(color)
+        }
+        .frame(maxWidth: .infinity)
+        .background { color.opacity(0.2) }
+    }
+    
     var combineElementGroupView: some View {
         ScrollView(.horizontal) {
             HStack(spacing: Constants.spacingBetweenElementTypes) {
                 if self.group.subjects.isEmpty == false {
                     VStack(spacing: Constants.typeNameSpacing) {
-                        Text("Subjects")
-                            .font(.title)
-                            .foregroundColor(Constants.typeNameColor(.subject))
+                        self.subtitle("Subjects", color: Constants.typeNameColor(.subject))
                         self.combineElementsView(of: self.group.subjects, direction: .fromLeftToRight)
                     }
                 }
                 
                 if self.group.publishers.isEmpty == false {
                     VStack(spacing: Constants.typeNameSpacing) {
-                        Text("Publishers")
-                            .font(.title)
-                            .foregroundColor(Constants.typeNameColor(.publisher))
+                        self.subtitle("Publishers", color: Constants.typeNameColor(.publisher))
                         self.combineElementsView(of: self.group.publishers, direction: .fromRightToLeft)
                     }
                 }
                 
                 if self.group.subscriptions.isEmpty == false {
                     VStack(spacing: Constants.typeNameSpacing) {
-                        Text("Subscriptions")
-                            .font(.title)
-                            .foregroundColor(Constants.typeNameColor(.subscription))
+                        self.subtitle("Subscriptions", color: Constants.typeNameColor(.subscription))
                         self.combineElementsView(of: self.group.subscriptions, direction: .fromRightToLeft)
                     }
                 }
                 
                 if self.group.subscribers.isEmpty == false {
                     VStack(spacing: Constants.typeNameSpacing) {
-                        Text("Subscribers")
-                            .font(.title)
-                            .foregroundColor(Constants.typeNameColor(.subscriber))
+                        self.subtitle("Subscribers", color: Constants.typeNameColor(.subscriber))
                         self.combineElementsView(of: self.group.subscribers, direction: .fromLeftToRight)
                     }
                 }

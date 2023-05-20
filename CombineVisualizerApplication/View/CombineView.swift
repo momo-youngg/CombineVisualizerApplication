@@ -14,7 +14,11 @@ struct CombineView: View {
         ScrollView(.vertical) {
             VStack(spacing: Constants.groupSpacing) {
                 ForEach(self.combineGroups) { group in
-                    CombineElementGroupView(group: group)
+                    VStack {
+                        CombineElementGroupView(group: group)
+                        Divider()
+                            .padding(Constants.dividerInsets)
+                    }
                 }
             }
         }
@@ -29,6 +33,7 @@ extension CombineView {
     enum Constants {
         static let groupSpacing: CGFloat = 10
         static let edgeInsets: EdgeInsets = EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+        static let dividerInsets: EdgeInsets = EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)
     }
 }
 
