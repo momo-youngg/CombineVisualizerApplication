@@ -114,10 +114,12 @@ extension SingleCombineElementView {
             let leftSpace: CGFloat = {
                 switch direction(of: edge) {
                 case .fromRight:
-                    return self.maxLeftEdgeWidth + Constants.stickWidth
+                    let result = self.maxLeftEdgeWidth + Constants.stickWidth
+                    return max(result, 0)
                 case .fromLeft:
-                    return self.maxLeftEdgeWidth - Constants.edgeTriangleWidth -
+                    let result = self.maxLeftEdgeWidth - Constants.edgeTriangleWidth -
                     (self.edgeTextAreaWidthBySequence[edge.sequence] ?? 0)
+                    return max(result, 0)
                 }
             }()
             Spacer()
@@ -158,10 +160,12 @@ extension SingleCombineElementView {
             let rightSpace: CGFloat = {
                 switch direction(of: edge) {
                 case .fromRight:
-                    return self.maxRightEdgeWidth - Constants.edgeTriangleWidth -
+                    let result = self.maxRightEdgeWidth - Constants.edgeTriangleWidth -
                     (self.edgeTextAreaWidthBySequence[edge.sequence] ?? 0)
+                    return max(result, 0)
                 case .fromLeft:
-                    return self.maxRightEdgeWidth + Constants.stickWidth
+                    let result = self.maxRightEdgeWidth + Constants.stickWidth
+                    return max(result, 0)
                 }
             }()
             Spacer()
