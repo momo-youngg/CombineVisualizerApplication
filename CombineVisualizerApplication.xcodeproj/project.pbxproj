@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AC1202413295F43149345168 /* libPods-CombineVisualizerApplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA4CEDA1866E158C29B6089 /* libPods-CombineVisualizerApplication.a */; };
+		FA860CBD2A196BC7002BE981 /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA860CBC2A196BC7002BE981 /* ConfigView.swift */; };
 		FAB657792A121306005DEA44 /* CombineVisualizerApplicationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB657782A121306005DEA44 /* CombineVisualizerApplicationApp.swift */; };
 		FAB6577B2A121306005DEA44 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB6577A2A121306005DEA44 /* ContentView.swift */; };
 		FAB6577D2A121307005DEA44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAB6577C2A121307005DEA44 /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 		023053CE80DC31B7A5210DC7 /* Pods-CombineVisualizerApplication.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CombineVisualizerApplication.debug.xcconfig"; path = "Target Support Files/Pods-CombineVisualizerApplication/Pods-CombineVisualizerApplication.debug.xcconfig"; sourceTree = "<group>"; };
 		A6F5F0418AFB01FEB730FB3A /* Pods-CombineVisualizerApplication.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CombineVisualizerApplication.release.xcconfig"; path = "Target Support Files/Pods-CombineVisualizerApplication/Pods-CombineVisualizerApplication.release.xcconfig"; sourceTree = "<group>"; };
 		EFA4CEDA1866E158C29B6089 /* libPods-CombineVisualizerApplication.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CombineVisualizerApplication.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA860CBC2A196BC7002BE981 /* ConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigView.swift; sourceTree = "<group>"; };
 		FAB657752A121306005DEA44 /* CombineVisualizerApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombineVisualizerApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB657782A121306005DEA44 /* CombineVisualizerApplicationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineVisualizerApplicationApp.swift; sourceTree = "<group>"; };
 		FAB6577A2A121306005DEA44 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				FAB657A72A1647A2005DEA44 /* CombineView.swift */,
 				FAB657AD2A16515D005DEA44 /* SingleCombineElementView.swift */,
 				FAB657AF2A188C23005DEA44 /* CombineElementGroupView.swift */,
+				FA860CBC2A196BC7002BE981 /* ConfigView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				FAB657A82A1647A2005DEA44 /* CombineView.swift in Sources */,
 				FAB657B02A188C23005DEA44 /* CombineElementGroupView.swift in Sources */,
 				FAB6577B2A121306005DEA44 /* ContentView.swift in Sources */,
+				FA860CBD2A196BC7002BE981 /* ConfigView.swift in Sources */,
 				FAB657A52A164219005DEA44 /* CombineVisualizerServer.swift in Sources */,
 				FAB657AC2A164B2A005DEA44 /* CombineGroup.swift in Sources */,
 				FAB657792A121306005DEA44 /* CombineVisualizerApplicationApp.swift in Sources */,

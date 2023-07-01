@@ -251,6 +251,7 @@ struct SingleCombineElementView_Previews: PreviewProvider {
     static var previews: some View {
         SingleCombineElementView(
             CombineElement(
+                uuid: UUID(),
                 elementType: .subject,
                 typeName: "SampleSubject",
                 edges: [

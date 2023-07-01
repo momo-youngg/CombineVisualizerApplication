@@ -11,6 +11,9 @@ final class CombineVisualizerServer {
     static let shared = CombineVisualizerServer()
     private init() { }
     
+    var webServer: GCDWebServer?
+    var port: UInt = 8080
+    
     func start() {
         let webServer = GCDWebServer()
         webServer.addHandler(
@@ -23,7 +26,13 @@ final class CombineVisualizerServer {
                 return GCDWebServerDataResponse(jsonObject: ["result": result ? "success" : "fail"])
             }
         )
-        webServer.start(withPort: 8080, bonjourName: "GCD Web Server")
+        webServer.start(withPort: self.port, bonjourName: "GCD Web Server")
+        self.webServer = webServer
+    }
+    
+    func restart() {
+        self.webServer?.stop()
+        self.start()
     }
     
     private func getBody(from request: GCDWebServerRequest) -> [String: Any] {
@@ -36,7 +45,8 @@ final class CombineVisualizerServer {
     }
     
     private func addNewEdge(_ body: [String: Any]) -> Bool {
-        guard let uuid = body["uuid"] as? String,
+        guard let trid = body["trid"] as? String,
+              let uuid = body["uuid"] as? String,
               let element = body["element"] as? String,
               let elementName = body["elementName"] as? String,
               let queue = body["queue"] as? String,
@@ -48,6 +58,7 @@ final class CombineVisualizerServer {
         let methodParameter = body["methodParameter"] as? String ?? ""
         Task { @MainActor in
             CombineManager.shared.add(
+                trid: trid,
                 uuid: uuid,
                 element: element,
                 elementName: elementName,

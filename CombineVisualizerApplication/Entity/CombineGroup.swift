@@ -8,7 +8,7 @@
 import Foundation
 
 struct CombineGroup: Identifiable {
-    let uuid: UUID
+    let trid: UUID
     var elements: [CombineElement]
     var totalEdgesCount: Int {
         elements.map { $0.edges.count }.reduce(0) { $0 + $1 }
@@ -27,17 +27,18 @@ struct CombineGroup: Identifiable {
     }
     
     var id: UUID {
-        uuid
+        trid
     }
     
     mutating func add(
+        uuid: UUID,
         elementType: ElementType,
         elementName: String,
         edge: Edges
     ) {
         var isAppended = false
         let newElements = elements.map { element in
-            if element.elementType == elementType &&  element.typeName == elementName {
+            if uuid == element.uuid {
                 var element = element
                 element.edges.append(edge)
                 isAppended = true
@@ -52,6 +53,7 @@ struct CombineGroup: Identifiable {
         }
         self.elements.append(
             CombineElement(
+                uuid: uuid,
                 elementType: elementType,
                 typeName: elementName,
                 edges: [edge])
@@ -60,12 +62,13 @@ struct CombineGroup: Identifiable {
 }
 
 struct CombineElement: Identifiable {
+    let uuid: UUID
     let elementType: ElementType
     let typeName: String
     var edges: [Edges]
     
-    var id: String {
-        "\(elementType)-\(typeName)"
+    var id: UUID {
+        uuid
     }
 }
 

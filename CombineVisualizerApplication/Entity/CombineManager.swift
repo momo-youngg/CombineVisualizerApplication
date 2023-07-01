@@ -17,6 +17,7 @@ final class CombineManager {
     
     @MainActor
     func add(
+        trid: String,
         uuid: String,
         element: String,
         elementName: String,
@@ -34,7 +35,7 @@ final class CombineManager {
         }
         
         var currentGroups = self.combineGroupsSubject.value
-        if var existGroup = currentGroups.first(where: { $0.uuid.uuidString == uuid }) {
+        if var existGroup = currentGroups.first(where: { $0.trid.uuidString == trid }) {
             let newEdge = Edges(
                 sequence: existGroup.totalEdgesCount,
                 queue: queue,
@@ -42,12 +43,13 @@ final class CombineManager {
                 method: method
             )
             existGroup.add(
+                uuid: UUID(uuidString: uuid) ?? UUID(),
                 elementType: elementType,
                 elementName: elementName,
                 edge: newEdge
             )
             let newGroup = currentGroups.map { group in
-                if group.uuid == existGroup.uuid {
+                if group.trid == existGroup.trid {
                     return existGroup
                 } else {
                     return group
@@ -56,9 +58,10 @@ final class CombineManager {
             self.combineGroupsSubject.send(newGroup)
         } else {
             let newGroup = CombineGroup(
-                uuid: UUID(uuidString: uuid) ?? UUID(),
+                trid: UUID(uuidString: trid) ?? UUID(),
                 elements: [
                     CombineElement(
+                        uuid: UUID(uuidString: uuid) ?? UUID(),
                         elementType: elementType,
                         typeName: elementName,
                         edges: [
@@ -75,5 +78,10 @@ final class CombineManager {
             currentGroups.append(newGroup)
             self.combineGroupsSubject.send(currentGroups)
         }
+    }
+    
+    @MainActor
+    func reset() {
+        self.combineGroupsSubject.send([])
     }
 }

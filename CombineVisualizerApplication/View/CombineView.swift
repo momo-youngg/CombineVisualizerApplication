@@ -11,13 +11,16 @@ struct CombineView: View {
     @State var combineGroups: [CombineGroup] = []
     
     var body: some View {
-        ScrollView(.vertical) {
-            VStack(spacing: Constants.groupSpacing) {
-                ForEach(self.combineGroups) { group in
-                    VStack {
-                        CombineElementGroupView(group: group)
-                        Divider()
-                            .padding(Constants.dividerInsets)
+        VStack(spacing: Constants.configSpacing) {
+            ConfigView()
+            ScrollView(.vertical) {
+                VStack(spacing: Constants.groupSpacing) {
+                    ForEach(self.combineGroups) { group in
+                        VStack {
+                            CombineElementGroupView(group: group)
+                            Divider()
+                                .padding(Constants.dividerInsets)
+                        }
                     }
                 }
             }
@@ -31,6 +34,7 @@ struct CombineView: View {
 
 extension CombineView {
     enum Constants {
+        static let configSpacing: CGFloat = 10
         static let groupSpacing: CGFloat = 10
         static let edgeInsets: EdgeInsets = EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
         static let dividerInsets: EdgeInsets = EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)
@@ -41,9 +45,10 @@ struct CombineView_Previews: PreviewProvider {
     static var previews: some View {
         CombineView(combineGroups: [
             CombineGroup(
-                uuid: UUID(),
+                trid: UUID(),
                 elements: [
                     CombineElement(
+                        uuid: UUID(),
                         elementType: .subject,
                         typeName: "Combine.PassthroughSubject",
                         edges: [
@@ -74,6 +79,7 @@ struct CombineView_Previews: PreviewProvider {
                         ]
                     ),
                     CombineElement(
+                        uuid: UUID(),
                         elementType: .publisher,
                         typeName: "ReceiveOn",
                         edges: [
@@ -86,6 +92,7 @@ struct CombineView_Previews: PreviewProvider {
                         ]
                     ),
                     CombineElement(
+                        uuid: UUID(),
                         elementType: .publisher,
                         typeName: "SubscribeOn",
                         edges: [
@@ -98,6 +105,7 @@ struct CombineView_Previews: PreviewProvider {
                         ]
                     ),
                     CombineElement(
+                        uuid: UUID(),
                         elementType: .subscription,
                         typeName: "ReceiveOn",
                         edges: [
@@ -116,6 +124,7 @@ struct CombineView_Previews: PreviewProvider {
                         ]
                     ),
                     CombineElement(
+                        uuid: UUID(),
                         elementType: .subscription,
                         typeName: "SubscribeOn",
                         edges: [
@@ -134,6 +143,7 @@ struct CombineView_Previews: PreviewProvider {
                         ]
                     ),
                     CombineElement(
+                        uuid: UUID(),
                         elementType: .subscription,
                         typeName: "PassthroughSubject",
                         edges: [
@@ -152,6 +162,7 @@ struct CombineView_Previews: PreviewProvider {
                         ]
                     ),
                     CombineElement(
+                        uuid: UUID(),
                         elementType: .subscriber,
                         typeName: "SubscribeOn",
                         edges: [
@@ -182,6 +193,7 @@ struct CombineView_Previews: PreviewProvider {
                         ]
                     ),
                     CombineElement(
+                        uuid: UUID(),
                         elementType: .subscriber,
                         typeName: "ReceiveOn",
                         edges: [
@@ -212,6 +224,7 @@ struct CombineView_Previews: PreviewProvider {
                         ]
                     ),
                     CombineElement(
+                        uuid: UUID(),
                         elementType: .subscriber,
                         typeName: "Sink",
                         edges: [
