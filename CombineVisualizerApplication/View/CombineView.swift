@@ -9,10 +9,12 @@ import SwiftUI
 
 struct CombineView: View {
     @State var combineGroups: [CombineGroup] = []
+    @State var showPortApplyAlert: Bool = false
+    @State var showResetAlert: Bool = false
     
     var body: some View {
         VStack(spacing: Constants.configSpacing) {
-            ConfigView()
+            ConfigView(showPortApplyAlert: $showPortApplyAlert, showResetAlert: $showResetAlert)
             ScrollView(.vertical) {
                 VStack(spacing: Constants.groupSpacing) {
                     ForEach(self.combineGroups) { group in
@@ -28,6 +30,18 @@ struct CombineView: View {
         .padding(Constants.edgeInsets)
         .onReceive(CombineManager.shared.combineGroupsSubject) { combineGroups in
             self.combineGroups = combineGroups
+        }
+        .alert(
+            Text("Port is now \(CombineVisualizerServer.shared.port)"),
+            isPresented: $showPortApplyAlert
+        ) {
+            // do nothing
+        }
+        .alert(
+            Text("Reset completed"),
+            isPresented: $showResetAlert
+        ) {
+            // do nothing
         }
     }
 }

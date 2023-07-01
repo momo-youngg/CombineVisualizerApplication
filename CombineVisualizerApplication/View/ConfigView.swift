@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ConfigView: View {
     @State private var portText: String = String(CombineVisualizerServer.shared.port)
+    @Binding var showPortApplyAlert: Bool
+    @Binding var showResetAlert: Bool
     
     var body: some View {
         HStack {
@@ -21,12 +23,14 @@ struct ConfigView: View {
                 }
                 CombineVisualizerServer.shared.port = portInt
                 CombineVisualizerServer.shared.restart()
+                showPortApplyAlert = true
             } label: {
                 Text("apply")
             }
             Spacer()
             Button {
                 CombineManager.shared.reset()
+                showResetAlert = true
             } label: {
                 Text("Reset")
             }
@@ -36,6 +40,9 @@ struct ConfigView: View {
 
 struct ConfigView_Previews: PreviewProvider {
     static var previews: some View {
-        ConfigView()
+        ConfigView(
+            showPortApplyAlert: Binding(projectedValue: .constant(false)),
+            showResetAlert: Binding(projectedValue: .constant(false))
+        )
     }
 }
