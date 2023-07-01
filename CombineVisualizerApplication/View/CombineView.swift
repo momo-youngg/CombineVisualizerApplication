@@ -12,19 +12,45 @@ struct CombineView: View {
     @State var showPortApplyAlert: Bool = false
     @State var showResetAlert: Bool = false
     
+    @State var combineGroupPageIndex: Int = 0
+    
+    private var maxIndex: Int {
+        if combineGroups.isEmpty {
+            return 0
+        }
+        return combineGroups.count - 1
+    }
+    
+    private var currentCombineGroup: CombineGroup? {
+        if combineGroups.count > combineGroupPageIndex {
+            return combineGroups[combineGroupPageIndex]
+        }
+        return nil
+    }
+    
+    private var canGoNext: Bool {
+        combineGroupPageIndex < combineGroups.count - 1
+    }
+    
+    private var canGoPrev: Bool {
+        combineGroupPageIndex > 0
+    }
+    
     var body: some View {
         VStack(spacing: Constants.configSpacing) {
-            ConfigView(showPortApplyAlert: $showPortApplyAlert, showResetAlert: $showResetAlert)
+            ZStack {
+                ConfigView(
+                    showPortApplyAlert: $showPortApplyAlert,
+                    showResetAlert: $showResetAlert,
+                    combineGroupPageIndex: $combineGroupPageIndex
+                )
+                navigationView
+            }
             ScrollView(.vertical) {
-                VStack(spacing: Constants.groupSpacing) {
-                    ForEach(self.combineGroups) { group in
-                        VStack {
-                            CombineElementGroupView(group: group)
-                            Divider()
-                                .padding(Constants.dividerInsets)
-                        }
-                    }
+                if let currentCombineGroup = currentCombineGroup {
+                    CombineElementGroupView(group: currentCombineGroup)
                 }
+                Spacer()
             }
         }
         .padding(Constants.edgeInsets)
@@ -42,6 +68,27 @@ struct CombineView: View {
             isPresented: $showResetAlert
         ) {
             // do nothing
+        }
+    }
+    
+    private var navigationView: some View {
+        HStack(spacing: Constants.configSpacing) {
+            Spacer()
+            Button {
+                combineGroupPageIndex -= 1
+            } label: {
+                Image(systemName: "arrow.left")
+                    .padding()
+            }
+            .disabled(canGoPrev == false)
+            Button {
+                combineGroupPageIndex += 1
+            } label: {
+                Image(systemName: "arrow.right")
+                    .padding()
+            }
+            .disabled(canGoNext == false)
+            Spacer()
         }
     }
 }
