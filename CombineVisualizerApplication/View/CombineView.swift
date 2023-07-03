@@ -46,10 +46,12 @@ struct CombineView: View {
                 )
                 navigationView
             }
-            if let currentCombineGroup = currentCombineGroup {
-                CombineElementGroupView(group: currentCombineGroup)
+            ScrollView(.vertical) {
+                if let currentCombineGroup = currentCombineGroup {
+                    CombineElementGroupView(group: currentCombineGroup)
+                }
+                Spacer()
             }
-            Spacer()
         }
         .padding(Constants.edgeInsets)
         .onReceive(CombineManager.shared.combineGroupsSubject) { combineGroups in
