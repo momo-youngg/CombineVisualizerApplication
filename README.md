@@ -23,3 +23,6 @@ To use CombineVisualizerApplication, follow these steps:
 
 ## Reference 
 - [GCDWebServer](https://github.com/swisspol/GCDWebServer)
+
+## Contact
+Any comments on this project are welcome. Feel free to register for the issue.
