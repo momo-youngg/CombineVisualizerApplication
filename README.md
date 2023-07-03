@@ -18,7 +18,7 @@ To use CombineVisualizerApplication, follow these steps:
 5. Once the method information is received, the application will display it on the screen in a visually appealing format.
 
 ## Example:
-![CombineVisualizerApplication Screenshot](https://github.com/momo-youngg/CombineVisualizerApplication/tree/main/screenshots/main.png)
+![CombineVisualizerApplication Screenshot](./screenshots/main.png)
 
 
 ## Reference 
