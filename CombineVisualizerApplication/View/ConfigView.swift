@@ -11,7 +11,6 @@ struct ConfigView: View {
     @State private var portText: String = String(CombineVisualizerServer.shared.port)
     @Binding var showPortApplyAlert: Bool
     @Binding var showResetAlert: Bool
-    @Binding var combineGroupPageIndex: Int
     
     var body: some View {
         HStack {
@@ -31,7 +30,6 @@ struct ConfigView: View {
             Spacer()
             Button {
                 CombineManager.shared.reset()
-                combineGroupPageIndex = 0
                 showResetAlert = true
             } label: {
                 Text("Reset")
@@ -44,8 +42,7 @@ struct ConfigView_Previews: PreviewProvider {
     static var previews: some View {
         ConfigView(
             showPortApplyAlert: Binding(projectedValue: .constant(false)),
-            showResetAlert: Binding(projectedValue: .constant(false)),
-            combineGroupPageIndex: Binding(projectedValue: .constant(0))
+            showResetAlert: Binding(projectedValue: .constant(false))
         )
     }
 }
